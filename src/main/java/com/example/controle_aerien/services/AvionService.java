@@ -16,15 +16,31 @@ public class AvionService {
         return avionrepository.findById(idAvion).get();
     }
     //update and save avion
-    public void addAvion(Avion avion){
-        avionrepository.save(avion);
+    public Avion saveAvion(Avion avion){
+        if(avion.getType().equals("COURT"))
+        {
+            avion.setConsommation(4);
+            avion.setCapacite(20000);
+        }
+        else if(avion.getType().equals("MOYEN"))
+        {
+            avion.setConsommation(5);
+            avion.setCapacite(40000);
+        }
+        else if(avion.getType().equals("LONG"))
+        {
+            avion.setConsommation(6);
+            avion.setCapacite(80000);
+        }
+        return avionrepository.save(avion);
     }
-    public List<Avion> getALLAvion(){
+    public List<Avion> getALLAvions(){
         return avionrepository.findAll();
     }
-    public void deleteAvion(Avion avion){
+    public void deleteAvionByID(Long id){
         if(avionrepository.count()==0)
             return;
-        else avionrepository.delete(avion);
+        else avionrepository.deleteById(id);
     }
+
 }

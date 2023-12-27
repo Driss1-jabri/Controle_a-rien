@@ -1,7 +1,10 @@
 package com.example.controle_aerien.entities;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name="aeroports")
@@ -15,6 +18,8 @@ public class Aeroport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    private int idtest;
 
     private String nom;
     private int nbPiste;
@@ -36,11 +41,21 @@ public class Aeroport {
 
     private double secteur;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Avion> avionsSol;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Avion> avionsVol;
 
     private boolean disponibilite;
+    public Aeroport (int idtest, Point position)
+    {
+        super();
+        this.idtest=idtest;
+        this.position=position;
+        this.disponibilite=true;
+        this.nbPlaceSol=5;
+    }
+
+
 }
