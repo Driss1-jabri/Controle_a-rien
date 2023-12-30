@@ -47,15 +47,14 @@ public class ControleAerienApplication {
 
     @PostConstruct
     public void init() throws AeroportNotfound, IOException {
-        Aeroport aeroport0 = new Aeroport(1, new Point(579, 352));
-        Aeroport aeroport1 = new Aeroport(2, new Point(579, 382));
-        Aeroport aeroport2 = new Aeroport(3, new Point(390, 466));
-        Aeroport aeroport3 = new Aeroport(4, new Point(351, 370));
-        Aeroport aeroport4 = new Aeroport(5, new Point(728, 384));
-        Aeroport aeroport5 = new Aeroport(6, new Point(960, 517));
-        Aeroport aeroport6 = new Aeroport(7, new Point(998, 357));
-        Aeroport aeroport7 = new Aeroport(8, new Point(329, 270));
-        Aeroport aeroport8 = new Aeroport(9, new Point(677, 559));
+        Aeroport aeroport0 = new Aeroport("ammerica", new Point(270,170));
+        Aeroport aeroport1 = new Aeroport("australie", new Point(1020,538));
+        Aeroport aeroport2 = new Aeroport("brasil", new Point(400,468));
+        Aeroport aeroport3 = new Aeroport("south_africa", new Point(651,542));
+        Aeroport aeroport4 = new Aeroport("maroc", new Point(538,297));
+        Aeroport aeroport5 = new Aeroport("russia", new Point(840,130));
+        Aeroport aeroport6 = new Aeroport("japan", new Point(1035,259));
+
 
         aeroportService.saveAeroport(aeroport0);
         aeroportService.saveAeroport(aeroport1);
@@ -111,7 +110,7 @@ public class ControleAerienApplication {
         {
             System.out.println("avion d: " + avion.isDisponibilite() );
         }
-        volService.StartVolGlobal(vol);
+        //volService.StartVolGlobal(vol);
         /*volService.StartVolGlobal(vol2);
         volService.StartVolGlobal(vol3);*/
 

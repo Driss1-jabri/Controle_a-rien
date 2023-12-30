@@ -17,6 +17,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin
 public class AeroportController {
 
     @Autowired
@@ -70,4 +71,10 @@ public class AeroportController {
         aeroportService.saveAeroport(oldaeroport);
         return ResponseEntity.ok(oldaeroport);
     }
+    @GetMapping("/avion/aeroports")
+    public ResponseEntity<List<Aeroport>> getAllAeroports() {
+        List<Aeroport> aeroports = aeroportService.getAllAeroport();
+        return ResponseEntity.ok(aeroports);
+    }
+
 }

@@ -4,6 +4,7 @@ import com.example.controle_aerien.DTO.VolDTO;
 import com.example.controle_aerien.entities.Vol;
 import com.example.controle_aerien.services.VolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,35 +19,36 @@ public class VolController {
 
 
     @GetMapping("/vols")
-    public List<Vol> getAllVoll()
-    {
+    public List<Vol> getAllVoll() {
         return volService.getAllVol();
     }
 
     @GetMapping("/vols/{id}")
-    public ResponseEntity<VolDTO> getVolById(@PathVariable Long id)
-    {
+    public ResponseEntity<VolDTO> getVolById(@PathVariable Long id) {
         Vol vol = volService.getVolById(id);
-        if(vol!=null) {
+        if (vol != null) {
             VolDTO volDTO = vol.toDTO();
             return ResponseEntity.ok(volDTO);//200 OK
-        }
-        else
+        } else
             return ResponseEntity.notFound().build();//404 NOT FOUND
     }
+
     @PostMapping("/create_vol")
-    public void saveVol(@RequestBody Vol vol)
-    {
-        volService.saveVol(vol);
+    public ResponseEntity<String> ajouterVol(@RequestBody Vol vol) {
+        try {
+            volService.saveVol(vol);
+
+            return ResponseEntity.ok("Vol ajouté avec succès!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'ajout du vol!!");
+        }
     }
 
     @PutMapping("/update_vol/{id}")
-    public ResponseEntity<Vol> updateVol(@PathVariable Long id , @RequestBody Vol newVol)
-    {
+    public ResponseEntity<Vol> updateVol(@PathVariable Long id, @RequestBody Vol newVol) {
         Vol oldVol = volService.getVolById(id);
 
-        if(oldVol == null)
-        {
+        if (oldVol == null) {
             return ResponseEntity.notFound().build();
         }
         oldVol.setAvion(newVol.getAvion());
@@ -57,9 +59,11 @@ public class VolController {
         volService.saveVol(oldVol);
         return ResponseEntity.ok(oldVol);
     }
-    @DeleteMapping ("/delete_vol/{id}")
-    public void deleteVolById(@PathVariable Long id)
-    {
+
+    @DeleteMapping("/delete_vol/{id}")
+    public void deleteVolById(@PathVariable Long id) {
         volService.deleteVolById(id);
     }
+
+
 }

@@ -109,7 +109,7 @@ public class VolService {
 
 
     @Async
-    public void StartVolGlobal(Vol volglobal) {
+    /*public void StartVolGlobal(Vol volglobal) {
         Aeroport aeroportDepart = volglobal.getAeroportDepart();
         Aeroport aeroportArrivee = volglobal.getAeroportArrivee();
 
@@ -133,7 +133,7 @@ public class VolService {
             }
         }
         volglobal.getAvion().setDisponibilite(true);
-    }
+    }*/
     public void StartVol(Vol vol)
     {
 

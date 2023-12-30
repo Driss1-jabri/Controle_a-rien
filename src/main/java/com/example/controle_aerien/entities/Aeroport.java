@@ -33,9 +33,11 @@ public class Aeroport {
     @OneToOne(cascade = CascadeType.ALL)
     private Point position;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "distanceAeroportId.aeroport1")
     private List<DistanceAeroport> distancesFromHere;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "distanceAeroportId.aeroport2")
     private List<DistanceAeroport> distancesToHere;
 
@@ -55,6 +57,10 @@ public class Aeroport {
         this.position=position;
         this.disponibilite=true;
         this.nbPlaceSol=5;
+    }
+    public Aeroport(String nom, Point position){
+        this.nom = nom;
+        this.position = position;
     }
 
 
