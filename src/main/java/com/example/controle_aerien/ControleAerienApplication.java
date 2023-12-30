@@ -63,8 +63,7 @@ public class ControleAerienApplication {
         aeroportService.saveAeroport(aeroport4);
         aeroportService.saveAeroport(aeroport5);
         aeroportService.saveAeroport(aeroport6);
-        aeroportService.saveAeroport(aeroport7);
-        aeroportService.saveAeroport(aeroport8);
+
 
         Avion avion1 = new Avion("avion1");
         Avion avion2 = new Avion("avion2");
@@ -94,8 +93,6 @@ public class ControleAerienApplication {
             System.out.println("avion d: " + avion.isDisponibilite() );
         }
         System.out.println("D1 : " + avion1.isDisponibilite());
-
-        Vol vol = volService.addVol(aeroport0.getId(),aeroport8.getId(),null);
         Vol vol2 = volService.addVol(aeroport0.getId(),aeroport4.getId(),null);
         Vol vol3 = volService.addVol(aeroport0.getId(),aeroport1.getId(),null);
 
