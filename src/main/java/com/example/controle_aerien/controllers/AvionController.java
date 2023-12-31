@@ -3,6 +3,7 @@ package com.example.controle_aerien.controllers;
 import com.example.controle_aerien.DTO.AvionDTO;
 import com.example.controle_aerien.entities.Aeroport;
 import com.example.controle_aerien.entities.Avion;
+import com.example.controle_aerien.entities.Point;
 import com.example.controle_aerien.services.AvionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,34 @@ public class AvionController {
     {
         avionservice.deleteAvionByID(id);
     }
+
+    @PutMapping("/update_avion_position/{id}")
+    public ResponseEntity<Avion> updateAvionPosition(@PathVariable Long id, @RequestBody Point newPosition) {
+        Avion avion = avionservice.getAvionById(id);
+
+        if (avion == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        avion.setPosition(newPosition);
+        avionservice.saveAvion(avion);
+
+        return ResponseEntity.ok(avion);
+    }
+    @GetMapping("/avion_position/{id}")
+    public ResponseEntity<Point> getAvionPosition(@PathVariable Long id) {
+        Avion avion = avionservice.getAvionById(id);
+
+        if (avion == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(avion.getPosition());
+    }
+
+
 }
+
 
 
 
