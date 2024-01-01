@@ -1,6 +1,7 @@
 package com.example.controle_aerien.entities;
 
 import com.example.controle_aerien.DTO.VolDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,7 +44,9 @@ public class Vol {
     @JoinColumn(name = "parent_vol_id")
     private Vol parentVol;
 
-    @OneToMany(mappedBy = "parentVol", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "parentVol", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Vol> subVols = new ArrayList<>();
 
     public Vol(Aeroport aeroportDepart, Aeroport aeroportArrivee, Date heureDepart, Date heureArrivee, Avion avion) {

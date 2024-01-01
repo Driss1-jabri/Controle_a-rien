@@ -36,10 +36,14 @@ public class AeroportService {
         }
     }
     void removeAvionFromAvionsVol(long aeroportId, Avion avion) {
-        aeroportRepo.removeAvionFromAvionsVol(aeroportId, avion);
+        synchronized (this) {
+            aeroportRepo.removeAvionFromAvionsVol(aeroportId, avion);
+        }
     }
     void removeAvionFromAvionsSol(long aeroportId, Avion avion) {
-        aeroportRepo.removeAvionFromAvionsSol(aeroportId, avion);
+        synchronized (this) {
+            aeroportRepo.removeAvionFromAvionsSol(aeroportId, avion);
+        }
     }
     public Aeroport getAeroportById(Long id)
     {
@@ -69,7 +73,7 @@ public class AeroportService {
             {
                 if(aeroport.getId() != newaeroport.getId()) {
                     int distance = (int) Math.round(Math.sqrt(Math.pow(newaeroport.getPosition().getX() - aeroport.getPosition().getX(), 2) + Math.pow(newaeroport.getPosition().getY() - aeroport.getPosition().getY(), 2)));
-                    if(distance <=200) {
+                    if(distance <=1000) {
                         DistanceAeroportId distanceAeroportId = new DistanceAeroportId(newaeroport, aeroport);
 
                         DistanceAeroport distanceAeroport = new DistanceAeroport(distanceAeroportId, distance);

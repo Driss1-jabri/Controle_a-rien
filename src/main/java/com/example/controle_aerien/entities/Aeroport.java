@@ -43,6 +43,7 @@ public class Aeroport {
 
     private double secteur;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Avion> avionsSol;
 
@@ -58,9 +59,12 @@ public class Aeroport {
         this.disponibilite=true;
         this.nbPlaceSol=5;
     }
-    public Aeroport(String nom, Point position){
+    public Aeroport( String nom, Point position){
+
         this.nom = nom;
         this.position = position;
+        this.disponibilite=true;
+        this.nbPlaceSol=5;
     }
 
 
