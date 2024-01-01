@@ -33,20 +33,18 @@ public class Aeroport {
     @OneToOne(cascade = CascadeType.ALL)
     private Point position;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "distanceAeroportId.aeroport1")
     private List<DistanceAeroport> distancesFromHere;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "distanceAeroportId.aeroport2")
     private List<DistanceAeroport> distancesToHere;
 
     private double secteur;
-
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Avion> avionsSol;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Avion> avionsVol;
 
@@ -59,12 +57,13 @@ public class Aeroport {
         this.disponibilite=true;
         this.nbPlaceSol=5;
     }
-    public Aeroport( String nom, Point position){
-
+    public Aeroport(String nom, Point position){
         this.nom = nom;
         this.position = position;
         this.disponibilite=true;
         this.nbPlaceSol=5;
+//        this.idtest=idtest;
+//        this.idtest=(int)this.getId();
     }
 
 

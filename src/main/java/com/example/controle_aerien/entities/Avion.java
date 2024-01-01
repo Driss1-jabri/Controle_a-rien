@@ -7,7 +7,7 @@ import lombok.*;
 @Table(name = "avions")
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class Avion {
@@ -49,6 +49,11 @@ public class Avion {
     public Avion(String nom) {
         super();
         this.nom=nom;
+        this.type=TypeAvion.LONG;
+        this.disponibilite = true;
+    }
+    public Avion() {
+        super();
         this.type=TypeAvion.LONG;
         this.disponibilite = true;
     }

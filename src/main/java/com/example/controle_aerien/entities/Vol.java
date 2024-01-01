@@ -34,6 +34,7 @@ public class Vol {
 
     private Date heureDepart;
     private Date heureArrivee;
+    private  boolean isArrived=false;
 
     @ManyToOne
     @JoinColumn(name = "avion_id" , referencedColumnName = "id")
@@ -43,8 +44,6 @@ public class Vol {
     @ManyToOne
     @JoinColumn(name = "parent_vol_id")
     private Vol parentVol;
-
-
     @JsonIgnore
     @OneToMany(mappedBy = "parentVol", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Vol> subVols = new ArrayList<>();

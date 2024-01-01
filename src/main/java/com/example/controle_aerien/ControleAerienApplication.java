@@ -47,6 +47,16 @@ public class ControleAerienApplication {
 
     @PostConstruct
     public void init() throws AeroportNotfound, IOException {
+//        Aeroport aeroport0 = new Aeroport(1, new Point(579, 352));
+//        Aeroport aeroport1 = new Aeroport(2, new Point(579, 382));
+//        Aeroport aeroport2 = new Aeroport(3, new Point(390, 466));
+//        Aeroport aeroport3 = new Aeroport(4, new Point(351, 370));
+//        Aeroport aeroport4 = new Aeroport(5, new Point(728, 384));
+//        Aeroport aeroport5 = new Aeroport(6, new Point(960, 517));
+//        Aeroport aeroport6 = new Aeroport(7, new Point(998, 357));
+//        Aeroport aeroport7 = new Aeroport(8, new Point(329, 270));
+//        Aeroport aeroport8 = new Aeroport(9, new Point(677, 559));
+
         Aeroport aeroport0 = new Aeroport("ammerica", new Point(270,170));
         Aeroport aeroport1 = new Aeroport("australie", new Point(1020,538));
         Aeroport aeroport2 = new Aeroport("brasil", new Point(400,468));
@@ -63,6 +73,16 @@ public class ControleAerienApplication {
         aeroportService.saveAeroport(aeroport4);
         aeroportService.saveAeroport(aeroport5);
         aeroportService.saveAeroport(aeroport6);
+
+//        aeroportService.saveAeroport(aeroport0);
+//        aeroportService.saveAeroport(aeroport1);
+//        aeroportService.saveAeroport(aeroport2);
+//        aeroportService.saveAeroport(aeroport3);
+//        aeroportService.saveAeroport(aeroport4);
+//        aeroportService.saveAeroport(aeroport5);
+//        aeroportService.saveAeroport(aeroport6);
+//        aeroportService.saveAeroport(aeroport7);
+//        aeroportService.saveAeroport(aeroport8);
 
         Avion avion1 = new Avion("avion1");
         Avion avion2 = new Avion("avion2");
@@ -82,8 +102,8 @@ public class ControleAerienApplication {
 
         //Avion avion = avionService.getALLAvions().get(0);
 
-        aeroportService.AddAvionToAeroport(aeroport0.getId(),avion1.getId());
-        aeroportService.AddAvionToAeroport(aeroport0.getId(),avion2.getId());
+        aeroportService.AddAvionToAeroport(aeroport5.getId(),avion1.getId());
+        aeroportService.AddAvionToAeroport(aeroport1.getId(),avion2.getId());
         aeroportService.AddAvionToAeroport(aeroport0.getId(),avion3.getId());
 
 
@@ -93,8 +113,9 @@ public class ControleAerienApplication {
         }
         System.out.println("D1 : " + avion1.isDisponibilite());
 
-        Vol vol = volService.addVol(aeroport0.getId(),aeroport6.getId(),null);
-        Vol vol2 = volService.addVol(aeroport0.getId(),aeroport4.getId(),null);
+        Vol vol = volService.addVol(aeroport0.getId(),aeroport5.getId(),null);
+//        Vol vol = volService.addVol(aeroport0.getId(),aeroport8.getId(),null);
+        Vol vol2 = volService.addVol(aeroport1.getId(),aeroport4.getId(),null);
 //        Vol vol3 = volService.addVol(aeroport0.getId(),aeroport6.getId(),null);
 
 
@@ -108,8 +129,8 @@ public class ControleAerienApplication {
         {
             System.out.println("avion d: " + avion.isDisponibilite() );
         }
-        //volService.StartVolGlobal(vol);
-        //volService.StartVolGlobal(vol2);
+//        volService.StartVolGlobal(vol);
+//        volService.StartVolGlobal(vol2);
 //        volService.StartVolGlobal(vol3);
 
         /*HashMap<String ,Integer> dji = djik.djisktraalgo(vol.getAeroportDepart().getId(),vol.getAeroportArrivee().getId());

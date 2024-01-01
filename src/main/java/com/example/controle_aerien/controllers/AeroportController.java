@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
-@RestController
 @CrossOrigin
+@RestController
+
 public class AeroportController {
 
     @Autowired
@@ -27,8 +27,14 @@ public class AeroportController {
 
 
     @GetMapping("/aeroports")
-    public List<Aeroport> getAllAeroport() {
-        return aeroportService.getAllAeroport();
+    public List<AeroportDTO> getAllAeroport() {
+//        return aeroportService.getAllAeroport();
+        List<Aeroport> aeroports = aeroportService.getAllAeroport();
+        List<AeroportDTO> aeroportDTOS = new ArrayList<>();
+        for (Aeroport aeroport : aeroports) {
+            aeroportDTOS.add(new AeroportDTO(aeroport));
+        }
+        return aeroportDTOS;
     }
     @GetMapping("/aeroports/{id}")
     public ResponseEntity<AeroportDTO> getAeroportById(@PathVariable Long id) {
